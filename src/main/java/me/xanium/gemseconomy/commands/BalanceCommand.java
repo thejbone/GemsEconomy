@@ -24,10 +24,9 @@ public class BalanceCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(final CommandSender sender, Command command, String s, final String[] args) {
-        SchedulerUtils.runAsync(() -> {
             if (!sender.hasPermission("gemseconomy.command.balance")) {
                 sender.sendMessage(F.getNoPerms());
-                return;
+                return true;
             }
             Account account;
             if (args.length == 0 && sender instanceof Player) {
@@ -36,7 +35,7 @@ public class BalanceCommand implements CommandExecutor {
                 account = plugin.getAccountManager().getAccount(args[0]);
             } else {
                 sender.sendMessage(F.getNoPerms());
-                return;
+                return true;
             }
             if (account != null) {
                 int currencies = plugin.getCurrencyManager().getCurrencies().size();
@@ -47,7 +46,7 @@ public class BalanceCommand implements CommandExecutor {
                     Currency currency = plugin.getCurrencyManager().getDefaultCurrency();
                     if (currency == null) {
                         sender.sendMessage(F.getBalanceNone().replace("{player}", account.getNickname()));
-                        return;
+                        return true;
                     }
                     double balance = account.getBalance(currency);
                     sender.sendMessage(F.getBalance().replace("{player}", account.getDisplayName()).replace("{currencycolor}", "" + currency.getColor()).replace("{balance}", currency.format(balance)));
@@ -61,7 +60,6 @@ public class BalanceCommand implements CommandExecutor {
             } else {
                 sender.sendMessage(F.getPlayerDoesNotExist());
             }
-        });
         return true;
     }
 

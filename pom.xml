@@ -45,7 +45,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.2.4</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -60,7 +60,6 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.1.2</version>
                 <configuration>
-                    <!--<outputDirectory>F:\Programmering\TestServer\update-nether\plugins</outputDirectory>-->
                     <outputDirectory>${project.basedir}</outputDirectory>
                 </configuration>
             </plugin>
@@ -106,12 +105,6 @@
             <artifactId>HikariCP</artifactId>
             <version>3.4.5</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.tnemc</groupId>
-            <artifactId>Reserve</artifactId>
-            <version>0.1.1.0</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
