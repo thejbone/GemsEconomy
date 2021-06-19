@@ -27,7 +27,7 @@ import java.util.UUID;
 public class YamlStorage extends DataStorage {
 
     private YamlConfiguration configuration;
-    private File file;
+    private final File file;
 
     public YamlStorage(File file) {
         super("YAML", false);
@@ -68,7 +68,8 @@ public class YamlStorage extends DataStorage {
                 String single = getConfig().getString(path + ".singular");
                 String plural = getConfig().getString(path + ".plural");
                 Currency currency = new Currency(UUID.fromString(uuid), single, plural);
-                currency.setColor(ChatColor.valueOf(getConfig().getString(path + ".color").toUpperCase()));
+                //noinspection ConstantConditions
+                currency.setColor(ChatColor.valueOf(getConfig().getString(path + ".color", "").toUpperCase()));
                 currency.setDecimalSupported(getConfig().getBoolean(path + ".decimalsupported"));
                 currency.setDefaultBalance(getConfig().getDouble(path + ".defaultbalance"));
                 currency.setDefaultCurrency(getConfig().getBoolean(path + ".defaultcurrency"));
@@ -121,7 +122,7 @@ public class YamlStorage extends DataStorage {
         ConfigurationSection bsection = getConfig().getConfigurationSection(path + ".balances");
         if (bsection != null) {
             Set<String> balances = bsection.getKeys(false);
-            if (balances != null && !balances.isEmpty()) {
+            if (!balances.isEmpty()) {
                 for (String currency : balances) {
                     String path2 = path + ".balances." + currency;
                     double balance = getConfig().getDouble(path2);
@@ -138,10 +139,13 @@ public class YamlStorage extends DataStorage {
     public ArrayList<Account> getOfflineAccounts() {
         String path = "accounts";
         ArrayList<Account> accounts = new ArrayList<>();
-        for(String uuid : getConfig().getConfigurationSection(path).getKeys(false)){
-            Account acc = loadAccount(UUID.fromString(uuid));
-            accounts.add(acc);
-        }
+
+        ConfigurationSection accountsConfig = getConfig().getConfigurationSection(path);
+        if (accountsConfig == null)
+            return accounts;
+
+        accountsConfig.getKeys(false).forEach(key -> accounts.add(loadAccount(UUID.fromString(key))));
+
         return accounts;
     }
 
@@ -155,7 +159,7 @@ public class YamlStorage extends DataStorage {
         ConfigurationSection section = getConfig().getConfigurationSection("accounts");
         if (section != null) {
             Set<String> accounts = section.getKeys(false);
-            if (accounts != null && !accounts.isEmpty()) {
+            if (!accounts.isEmpty()) {
                 for (String uuid : accounts) {
                     String path = "accounts." + uuid;
                     String nick = getConfig().getString(path + ".nickname");
@@ -186,18 +190,14 @@ public class YamlStorage extends DataStorage {
 
     @Override
     public void loadAccount(UUID uuid, Callback<Account> callback) {
-        SchedulerUtils.runAsync(() -> {
-            Account account = this.loadAccount(uuid);
-            SchedulerUtils.run(() -> callback.call(account));
-        });
+        Account account = this.loadAccount(uuid);
+        SchedulerUtils.run(() -> callback.call(account));
     }
 
     @Override
     public void loadAccount(String name, Callback<Account> callback) {
-        SchedulerUtils.runAsync(() -> {
-            Account account = this.loadAccount(name);
-            SchedulerUtils.run(() -> callback.call(account));
-        });
+        Account account = this.loadAccount(name);
+        SchedulerUtils.run(() -> callback.call(account));
     }
 
     @Override

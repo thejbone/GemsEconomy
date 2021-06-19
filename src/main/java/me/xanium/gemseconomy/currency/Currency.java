@@ -16,7 +16,7 @@ import java.util.UUID;
 
 public class Currency {
 
-    private UUID uuid;
+    private final UUID uuid;
     private String singular;
     private String plural;
     private String symbol = null;
@@ -70,7 +70,7 @@ public class Currency {
             amt.append(UtilString.format(amount));
         } else {
             String s = String.valueOf(amount);
-            String[] ss = s.split(".");
+            String[] ss = s.split("\\.");
             if (ss.length > 0) {
                 s = ss[0];
             }

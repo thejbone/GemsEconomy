@@ -63,7 +63,7 @@ public class UpdateForwarder implements PluginMessageListener {
             else if(type.equals("account")){
                 UUID uuid = UUID.fromString(name);
                 plugin.getAccountManager().removeAccount(uuid);
-                SchedulerUtils.runAsync(() -> plugin.getDataStore().loadAccount(uuid));
+                plugin.getDataStore().loadAccount(uuid);
                 if(plugin.isDebug()){
                     UtilServer.consoleLog(channelName + " - Account " + name + " updated.");
                 }
