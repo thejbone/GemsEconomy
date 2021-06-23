@@ -332,11 +332,6 @@ public class CurrencyCommand implements CommandExecutor {
                         }
 
                         plugin.initializeDataStore(ds.getName(), false);
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException ex) {
-                            ex.printStackTrace();
-                        }
 
                         sender.sendMessage(F.getPrefix() + "§aInitialized " + ds.getName() + " Data Store. Check console for wrong username/password if using mysql.");
                         sender.sendMessage(F.getPrefix() + "§aIf there are sql login errors, you can just retry after you have fixed the credentials, changed the datastore back to what you were using and restarted the server!");
@@ -357,22 +352,10 @@ public class CurrencyCommand implements CommandExecutor {
                             plugin.getDataStore().loadCurrencies();
                             sender.sendMessage(F.getPrefix() + "§aLoaded all currencies as usual.");
 
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException ex) {
-                                ex.printStackTrace();
-                            }
-
                             for (Account a : offline) {
                                 plugin.getDataStore().saveAccount(a);
                             }
                             sender.sendMessage(F.getPrefix() + "§aAll accounts saved to storage.");
-
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException ex) {
-                                ex.printStackTrace();
-                            }
 
                             for (Player players : Bukkit.getOnlinePlayers()) {
                                 plugin.getDataStore().loadAccount(players.getUniqueId(), account -> plugin.getAccountManager().add(account));
@@ -421,11 +404,6 @@ public class CurrencyCommand implements CommandExecutor {
                         sender.sendMessage(F.getPrefix() + "§aSwitching from §f" + current.getName() + " §ato §f" + ds.getName() + "§a.");
 
                         plugin.initializeDataStore(ds.getName(), true);
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException ex) {
-                            ex.printStackTrace();
-                        }
 
                         for (Player players : Bukkit.getOnlinePlayers()) {
                             plugin.getDataStore().loadAccount(players.getUniqueId(), account -> plugin.getAccountManager().add(account));
