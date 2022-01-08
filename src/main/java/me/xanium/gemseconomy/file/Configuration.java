@@ -42,6 +42,7 @@ public class Configuration {
         config.addDefault("storage", "yaml");
         config.addDefault("debug", false);
         config.addDefault("vault", false);
+        config.addDefault("defaultCurrency", "");
         config.addDefault("transaction_log", true);
 
         config.addDefault("mysql.database", "minecraft");

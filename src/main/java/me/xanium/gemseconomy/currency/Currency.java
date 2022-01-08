@@ -23,7 +23,7 @@ public class Currency {
     private ChatColor color = ChatColor.WHITE;
     private boolean decimalSupported = true;
     private boolean payable = true;
-    private boolean defaultCurrency = false;
+//    private boolean defaultCurrency = false;
     private double defaultBalance = 0.0;
     private double exchangeRate = 0.0;
 

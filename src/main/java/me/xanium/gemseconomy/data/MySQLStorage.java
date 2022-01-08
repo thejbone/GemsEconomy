@@ -166,7 +166,7 @@ public class MySQLStorage extends DataStorage {
                 double defaultBalance = set.getDouble("default_balance");
                 String symbol = set.getString("symbol");
                 boolean decimals = set.getInt("decimals_supported") == 1;
-                boolean isDefault = set.getInt("is_default") == 1;
+//                boolean isDefault = set.getInt("is_default") == 1;
                 boolean payable = set.getInt("payable") == 1;
                 ChatColor color = ChatColor.valueOf(set.getString("color"));
                 double exchangeRate = set.getDouble("exchange_rate");
@@ -197,7 +197,7 @@ public class MySQLStorage extends DataStorage {
                 double defaultBalance = set.getDouble("default_balance");
                 String symbol = set.getString("symbol");
                 boolean decimals = set.getInt("decimals_supported") == 1;
-                boolean isDefault = set.getInt("is_default") == 1;
+//                boolean isDefault = set.getInt("is_default") == 1;
                 boolean payable = set.getInt("payable") == 1;
                 ChatColor color = ChatColor.valueOf(set.getString("color"));
                 double exchangeRate = set.getDouble("exchange_rate");
