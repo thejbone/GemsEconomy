@@ -174,7 +174,7 @@ public class MySQLStorage extends DataStorage {
                 currency.setDefaultBalance(defaultBalance);
                 currency.setSymbol(symbol);
                 currency.setDecimalSupported(decimals);
-                currency.setDefaultCurrency(isDefault);
+//                currency.setDefaultCurrency(isDefault);
                 currency.setPayable(payable);
                 currency.setColor(color);
                 currency.setExchangeRate(exchangeRate);
@@ -205,7 +205,7 @@ public class MySQLStorage extends DataStorage {
                 currency.setDefaultBalance(defaultBalance);
                 currency.setSymbol(symbol);
                 currency.setDecimalSupported(decimals);
-                currency.setDefaultCurrency(isDefault);
+//                currency.setDefaultCurrency(isDefault);
                 currency.setPayable(payable);
                 currency.setColor(color);
                 currency.setExchangeRate(exchangeRate);
@@ -226,7 +226,7 @@ public class MySQLStorage extends DataStorage {
             stmt.setDouble(4, currency.getDefaultBalance());
             stmt.setString(5, currency.getSymbol());
             stmt.setInt(6, currency.isDecimalSupported() ? 1 : 0);
-            stmt.setInt(7, currency.isDefaultCurrency() ? 1 : 0);
+//            stmt.setInt(7, currency.isDefaultCurrency() ? 1 : 0);
             stmt.setInt(8, currency.isPayable() ? 1 : 0);
             stmt.setString(9, currency.getColor().name());
             stmt.setDouble(10, currency.getExchangeRate());

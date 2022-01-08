@@ -79,7 +79,7 @@ public class CurrencyCommand implements CommandExecutor {
                         sender.sendMessage(F.getPrefix() + "§7Singular: §a" + currency.getSingular() + "§7, Plural: §a" + currency.getPlural());
                         sender.sendMessage(F.getPrefix() + "§7Start Balance: " + currency.getColor() + currency.format(currency.getDefaultBalance()) + "§7.");
                         sender.sendMessage(F.getPrefix() + "§7Decimals: " + (currency.isDecimalSupported() ? "§aYes" : "§cNo"));
-                        sender.sendMessage(F.getPrefix() + "§7Default: " + (currency.isDefaultCurrency() ? "§aYes" : "§cNo"));
+//                        sender.sendMessage(F.getPrefix() + "§7Default: " + (currency.isDefaultCurrency() ? "§aYes" : "§cNo"));
                         sender.sendMessage(F.getPrefix() + "§7Payable: " + (currency.isPayable() ? "§aYes" : "§cNo"));
                         sender.sendMessage(F.getPrefix() + "§7Color: " + currency.getColor() + currency.getColor().name());
                         sender.sendMessage(F.getPrefix() + "§7Rate: " + currency.getColor() + currency.getExchangeRate());
@@ -193,10 +193,10 @@ public class CurrencyCommand implements CommandExecutor {
                     if (currency != null) {
                         Currency c = plugin.getCurrencyManager().getDefaultCurrency();
                         if (c != null) {
-                            c.setDefaultCurrency(false);
+//                            c.setDefaultCurrency(false);
                             plugin.getDataStore().saveCurrency(c);
                         }
-                        currency.setDefaultCurrency(true);
+                        plugin.setDefaultCurrency(c.getSingular());
                         sender.sendMessage(F.getPrefix() + "§7Set default currency to §f" + currency.getPlural());
                         plugin.getDataStore().saveCurrency(currency);
                     } else {
@@ -340,7 +340,7 @@ public class CurrencyCommand implements CommandExecutor {
                             for (Currency c : currencies) {
                                 Currency newCurrency = new Currency(c.getUuid(), c.getSingular(), c.getPlural());
                                 newCurrency.setExchangeRate(c.getExchangeRate());
-                                newCurrency.setDefaultCurrency(c.isDefaultCurrency());
+//                                newCurrency.setDefaultCurrency(c.isDefaultCurrency());
                                 newCurrency.setSymbol(c.getSymbol());
                                 newCurrency.setColor(c.getColor());
                                 newCurrency.setDecimalSupported(c.isDecimalSupported());

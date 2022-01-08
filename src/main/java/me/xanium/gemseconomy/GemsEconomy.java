@@ -51,6 +51,8 @@ public class GemsEconomy extends JavaPlugin {
 
     private boolean disabling = false;
 
+    private String defaultCurrency = "";
+
     /**
      * Bug fix Update
      *
@@ -85,8 +87,17 @@ public class GemsEconomy extends JavaPlugin {
 
         setDebug(getConfig().getBoolean("debug"));
         setVault(getConfig().getBoolean("vault"));
+        setDefaultCurrency(getConfig().getString("defaultCurrency"));
         setLogging(getConfig().getBoolean("transaction_log"));
         setCheques(getConfig().getBoolean("cheque.enabled"));
+    }
+
+    public void setDefaultCurrency(String defaultCurrency) {
+        this.defaultCurrency = defaultCurrency;
+    }
+
+    public String getDefaultCurrency(){
+        return this.defaultCurrency;
     }
 
     @Override
@@ -271,4 +282,5 @@ public class GemsEconomy extends JavaPlugin {
     public void setCheques(boolean cheques) {
         this.cheques = cheques;
     }
+
 }

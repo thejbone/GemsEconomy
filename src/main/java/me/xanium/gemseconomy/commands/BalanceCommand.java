@@ -49,12 +49,22 @@ public class BalanceCommand implements CommandExecutor {
                         return true;
                     }
                     double balance = account.getBalance(currency);
-                    sender.sendMessage(F.getBalance().replace("{player}", account.getDisplayName()).replace("{currencycolor}", "" + currency.getColor()).replace("{balance}", currency.format(balance)));
+                    sender.sendMessage(F.getBalance()
+                            .replace("{currencycolor}", currency.getColor() + "")
+                            .replace("{symbol}", currency.getSymbol())
+                            .replace("{balance}", currency.formatNumber(balance))
+                            .replace("{currencyName}", currency.getPlural())
+                    );
                 } else {
                     sender.sendMessage(F.getBalanceMultiple().replace("{player}", account.getDisplayName()));
                     for (Currency currency : plugin.getCurrencyManager().getCurrencies()) {
                         double balance = account.getBalance(currency);
-                        sender.sendMessage(F.getBalanceList().replace("{currencycolor}", currency.getColor() + "").replace("{format}", currency.format(balance)));
+                        sender.sendMessage(F.getBalanceList()
+                                .replace("{currencycolor}", currency.getColor() + "")
+                                .replace("{symbol}", currency.getSymbol())
+                                .replace("{balance}", currency.formatNumber(balance))
+                                .replace("{currencyName}", currency.getPlural())
+                        );
                     }
                 }
             } else {

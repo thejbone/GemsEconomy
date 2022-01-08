@@ -72,7 +72,7 @@ public class YamlStorage extends DataStorage {
                 currency.setColor(ChatColor.valueOf(getConfig().getString(path + ".color", "").toUpperCase()));
                 currency.setDecimalSupported(getConfig().getBoolean(path + ".decimalsupported"));
                 currency.setDefaultBalance(getConfig().getDouble(path + ".defaultbalance"));
-                currency.setDefaultCurrency(getConfig().getBoolean(path + ".defaultcurrency"));
+//                currency.setDefaultCurrency(getConfig().getBoolean(path + ".defaultcurrency"));
                 currency.setPayable(getConfig().getBoolean(path + ".payable"));
                 currency.setSymbol(getConfig().getString(path + ".symbol"));
                 currency.setExchangeRate(getConfig().getDouble(path + ".exchange_rate"));
@@ -90,7 +90,7 @@ public class YamlStorage extends DataStorage {
         getConfig().set(path + ".defaultbalance", currency.getDefaultBalance());
         getConfig().set(path + ".symbol", currency.getSymbol());
         getConfig().set(path + ".decimalsupported", currency.isDecimalSupported());
-        getConfig().set(path + ".defaultcurrency", currency.isDefaultCurrency());
+//        getConfig().set(path + ".defaultcurrency", currency.isDefaultCurrency());
         getConfig().set(path + ".payable", currency.isPayable());
         getConfig().set(path + ".color", currency.getColor().name());
         getConfig().set(path + ".exchange_rate", currency.getExchangeRate());

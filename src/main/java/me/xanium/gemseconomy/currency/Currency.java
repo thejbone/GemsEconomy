@@ -84,14 +84,28 @@ public class Currency {
         }
         return amt.toString();
     }
+    public String formatNumber(double amount) {
+        StringBuilder amt = new StringBuilder();
+        if (this.isDecimalSupported()) {
+            amt.append(UtilString.format(amount));
+        } else {
+            String s = String.valueOf(amount);
+            String[] ss = s.split("\\.");
+            if (ss.length > 0) {
+                s = ss[0];
+            }
+            amt.append(NumberFormat.getInstance().format(Double.parseDouble(s)));
+        }
+        return amt.toString();
+    }
 
-    public boolean isDefaultCurrency() {
+/*    public boolean isDefaultCurrency() {
         return this.defaultCurrency;
-    }
+    }*/
 
-    public void setDefaultCurrency(boolean defaultCurrency) {
-        this.defaultCurrency = defaultCurrency;
-    }
+//    public void setDefaultCurrency(boolean defaultCurrency) {
+//        this.defaultCurrency = defaultCurrency;
+//    }
 
     public boolean isPayable() {
         return this.payable;

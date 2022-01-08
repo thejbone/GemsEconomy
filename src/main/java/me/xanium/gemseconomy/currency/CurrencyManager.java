@@ -43,11 +43,12 @@ public class CurrencyManager {
     }
 
     public Currency getDefaultCurrency() {
-        for (Currency currency : currencies) {
-            if (!currency.isDefaultCurrency()) continue;
-            return currency;
+        try {
+            return getCurrency(plugin.getDefaultCurrency());
+        } catch(Exception e){
+            return null;
         }
-        return null;
+
     }
 
     public void createNewCurrency(String singular, String plural){
@@ -57,10 +58,6 @@ public class CurrencyManager {
 
         Currency currency = new Currency(UUID.randomUUID(), singular, plural);
         currency.setExchangeRate(1.0);
-        if(currencies.size() == 0) {
-            currency.setDefaultCurrency(true);
-        }
-
         add(currency);
 
         plugin.getDataStore().saveCurrency(currency);
