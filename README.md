@@ -1,6 +1,12 @@
 # GemsEconomy
-This is my public spigot plugin GemsEconomy.
-If you are looking for the source for the expansion.
-Go here: https://github.com/Xanium1/GemsEconomy-Expansion
 
+Modified version of GemsEconomy
 Spigot link: https://www.spigotmc.org/resources/gemseconomy.19655/
+
+This version has an updated code base forked from Gadsee/GemsEconomy.
+
+### My changes:
+- Added a default economy entry to the config (via the Economy singular/plural name). 
+  - This is for per server default economies. 
+- Removed the default economy option within each currency type
+- Updated balance for singular/multiple to support more formatting options. 
