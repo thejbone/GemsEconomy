@@ -7,8 +7,9 @@ website: https://www.spigotmc.org/resources/gemseconomy.19655/
 load: STARTUP
 api-version: 1.16
 loadbefore:
+  - Essentials
   - ItemFrameShops
-softdepend: [Vault]
+softdepend: [Essentials, Vault]
 commands:
   balance:
     description: Shows your balances
@@ -38,3 +39,7 @@ commands:
     usage: /exchange
     description: Exchange currencies.
     aliases: [gex, gemsexchange, gexchange]
+  convertess:
+    usage: /convertess
+    description: Convert Essentials Econ
+    aliases: [cess]

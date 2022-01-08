@@ -25,6 +25,7 @@ import me.xanium.gemseconomy.utils.SchedulerUtils;
 import me.xanium.gemseconomy.utils.Updater;
 import me.xanium.gemseconomy.utils.UtilServer;
 import me.xanium.gemseconomy.vault.VaultHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -110,7 +111,6 @@ public class GemsEconomy extends JavaPlugin {
         economyLogger = new EconomyLogger(this);
         metrics = new Metrics(this);
         updateForwarder = new UpdateForwarder(this);
-
         initializeDataStore(getConfig().getString("storage"), true);
 
         getServer().getPluginManager().registerEvents(new EconomyListener(), this);
@@ -121,6 +121,7 @@ public class GemsEconomy extends JavaPlugin {
         getCommand("currency").setExecutor(new CurrencyCommand());
         getCommand("cheque").setExecutor(new ChequeCommand());
         getCommand("exchange").setExecutor(new ExchangeCommand());
+        getCommand("convertess").setExecutor(new ConvertEssCommand());
 
         if (isVault()) {
             vaultHandler = new VaultHandler(this);
